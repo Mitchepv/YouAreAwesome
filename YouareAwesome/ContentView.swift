@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var message = ""
     @State private var imageName = ""
     @State private var imageNumber = 0
+    @State private var messageNumber = 0
   
     var body: some View {
         VStack {
@@ -26,17 +27,22 @@ struct ContentView: View {
                 .font(Font.largeTitle)
                 .fontWeight(.heavy)
                 .foregroundStyle(.red)
+                .multilineTextAlignment(.center)
 
             
             Spacer()
             
             Button("Show Message!") {
-                let message1 = "You are Awesome!"
-                let message2 = " You are Great!"
+                let messages = [ "You are Awesome!", "You are Great!", "Fabulous, girls!", "Let's do great things", " Be wonderful and lovely" ]
                 
-                message = ( message == message1 ? message2 : message1 )
                 
-              //TODO: - update the imageName variable -
+                message = messages [messageNumber]
+                messageNumber += 1
+                if messageNumber == message.count {
+                    messageNumber = 0
+                }
+
+             
                 if imageNumber > 9 {
                     imageNumber = 0
                 }
