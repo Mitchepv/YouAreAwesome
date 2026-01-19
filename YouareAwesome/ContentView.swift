@@ -35,7 +35,6 @@ struct ContentView: View {
                 let message2 = " You are Great!"
                 
                 message = ( message == message1 ? message2 : message1 )
-//                imageName = ( imageName == "image0" ? "image1" : "image0" )
                 
               //TODO: - update the imageName variable -
                 if imageNumber > 9 {
