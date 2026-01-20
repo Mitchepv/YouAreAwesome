@@ -17,39 +17,46 @@ struct ContentView: View {
         VStack {
             Spacer()
             
-            Image(imageName)
-                .resizable()
-                .scaledToFit()
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(radius: 30)
-            
             Text(message)
                 .font(Font.largeTitle)
                 .fontWeight(.heavy)
                 .foregroundStyle(.red)
                 .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.5)
+                .frame(height: 100)
+                .animation(.easeIn(duration: 0.15 ), value: message)
+            
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(radius: 30)
+                .animation(.bouncy(duration: 0.5, extraBounce: 0.2 ), value: imageName)
+            
+       
 
             
             Spacer()
             
             Button("Show Message!") {
-                let messages = [ "You are Awesome!", "You are Great!", "Fabulous, girls!", "Let's do great things", " Be wonderful and lovely" ]
+                
+                let messages = [ "You are Awesome!", "You are Great!", "Wow, you are awesome. Continue to do great things. I'm am so proud of you", "Fabulous, girls!", "Let's do great things", " Be wonderful and lovely", " The smartest in the room" ]
                 
                 
                 message = messages [messageNumber]
                 messageNumber += 1
+                
                 if messageNumber == message.count {
                     messageNumber = 0
                 }
 
              
+                imageName = "image\(imageNumber)"
+                imageNumber += 1
+                
                 if imageNumber > 9 {
                     imageNumber = 0
                 }
-                imageName = "image\(imageNumber)"
-                imageNumber += 1
-            
-            
                 
 
             }
