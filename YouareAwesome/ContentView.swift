@@ -60,43 +60,40 @@ struct ContentView: View {
                 Toggle("", isOn: $soundIsOn )
                     .labelsHidden().onChange(of: soundIsOn) {
                         if audioPlayer != nil && audioPlayer.isPlaying {
-                                audioPlayer.stop()
+                            audioPlayer.stop()
                         }
                     }
                 
                 Spacer()
                 
-                Button("Show Message!") {
+                Button ("Show Message!") {
                     
                     let messages = [ "You are Awesome!", "You are Great!", "Wow, you are awesome. Continue to do great things. I'm am so proud of you", "Fabulous, girls!", "Let's do great things", " Be wonderful and lovely", " The smartest in the room" ]
                     
                     
-                    lastMessageNumber = nonRepeatingRandom(lastNumber: lastMessageNumber, upperBound: messages.count-1, lowerBound: 0)
+                    lastMessageNumber = nonRepeatingRandom (lastNumber: lastMessageNumber, upperBound: messages.count-1, lowerBound: 0)
                     message = messages[lastMessageNumber]
                     
                     
-                    lastImageNumber = nonRepeatingRandom(lastNumber: lastImageNumber, upperBound: numberOfImages-1, lowerBound: 0)
+                    lastImageNumber = nonRepeatingRandom(lastNumber: lastImageNumber, upperBound: numberOfImages-1,lowerBound: 0)
                     imageName = "image\(lastImageNumber)"
                     
                     
-                    lastSoundNumber = nonRepeatingRandom(lastNumber: lastSoundNumber, upperBound: numberOfSounds-1,lowerBound: 0)
-                    if soundIsOn {
-                        playSound(soundName: "sound\(lastSoundNumber)")
-                    }
+                    lastSoundNumber = nonRepeatingRandom(lastNumber: lastSoundNumber, upperBound: numberOfSounds-1, lowerBound: 0)
                     
+                    if soundIsOn {
+                      playSound(soundName: "sound\(lastSoundNumber)")
+                    }
+                }
+                    .buttonStyle(.borderedProminent)
+                    .font(.title2)
                     
                 }
-                
-                .buttonStyle(.borderedProminent)
-                .font(Font.title2)
-                .tint(.orange)
-                
-                .padding()
-            }
+            .tint(.accentColor)
             
-        }
+            }
+        .padding()
     }
-    
     
     func nonRepeatingRandom(lastNumber: Int , upperBound: Int, lowerBound: Int ) -> Int {
         var newNumber : Int
@@ -125,6 +122,12 @@ struct ContentView: View {
     
 }
 
-#Preview {
+#Preview ("Light mode"){
     ContentView()
+        .preferredColorScheme(.light)
+}
+
+#Preview ("Dark mode"){
+    ContentView()
+        .preferredColorScheme(.dark)
 }
